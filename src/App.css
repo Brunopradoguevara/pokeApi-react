@@ -202,12 +202,14 @@
 }
 .ghost-gradient{
  background: linear-gradient(177.03deg, #323569 -11.97%, #454AA8 57.49%, #787DDA 135.64%);
+ color: white;
 }
 .rock-gradient{
  background: linear-gradient(177.03deg, #7E7E7E -11.97%, #8D8D94 57.49%, #D3D3D3 135.64%);
 }
 .dark-gradient{
   background: linear-gradient(177.03deg, #030706 -11.97%, #0D1211 57.49%, #5A5E5D 135.64%);
+  color: white;
 }
 .ice-gradient{
  background: linear-gradient(177.03deg, #6FBEDF -11.97%, #64CBF5 47.77%, #BDEBFE 136.72%);
@@ -223,9 +225,11 @@
 }
 .electric-gradient{
  background: linear-gradient(179.75deg, #0C1395 -19.96%, #2B319B 43.67%, #7075D9 138.4%);
+ color: white;
 }
 .ground-gradient{
  background: linear-gradient(179.75deg, #654008 -19.96%, #895C1A 43.67%, #D69638 138.4%);
+ color: white;
 }
 .psychic-gradient{
   background: linear-gradient(179.75deg, #E62D2D -19.96%, #D13E3E 43.67%, #F07F7F 138.4%);
@@ -376,20 +380,22 @@
 }
 .pokedexId__type_abilities_container{
   display: grid;
+  grid-template-rows: auto 1fr;
   text-align: center;
 }
 .pokedexId__type_abilities_title{
   font-size: 1.3rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .pokedexId__type_ability{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px , 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px , 1fr));
   gap: 1rem;
   text-transform: capitalize;
 }
 .pokedexId__type{ 
   padding: 0.5rem;
+  max-height: 34px;
 }
 .pokedexId__ability{
   padding: 0.5rem;
