@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import useFetch from "../hooks/useFetch"
 import { useEffect, useRef, useState } from "react"
 import SelectType from "../components/pokedexPage/SelectType"
-import PokeCard from "../components/pokedexPage/pokeCard"
+import PokeCard from "../components/pokedexPage/PokeCard"
 
 const PokedexPage = () => {
   const [inputValue, setInputValue] = useState('')
