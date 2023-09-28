@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import { Navigate, Outlet, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Navigate, Outlet} from "react-router-dom"
 
 
 const ProtectedRoutes = () => {
