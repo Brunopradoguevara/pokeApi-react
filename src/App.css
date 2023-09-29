@@ -327,7 +327,7 @@
   text-align: center;
   border: none;
   font-weight: 700;
-  /* border: 1px solid grey; */
+  border: 1px solid grey;
 }
 .pagination__separation_mark{
   font-size: 2rem;
