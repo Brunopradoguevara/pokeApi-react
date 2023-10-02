@@ -2,15 +2,15 @@ import { useEffect } from "react"
 import useFetch from "../../hooks/useFetch"
 
 
-const SelectType = ({setTypeSelected}) => {
+const SelectType = ({setTypeSelected,setPageNumber}) => {
     const url = 'https://pokeapi.co/api/v2/type'
     const [types,getTypes] = useFetch(url)
     useEffect(()=>{
         getTypes()
     },[])
-    console.log(types)
     const handleChange = (e) =>{
-        setTypeSelected(e.target.value) 
+        setTypeSelected(e.target.value)
+        setPageNumber(1)
     }
 
   return (

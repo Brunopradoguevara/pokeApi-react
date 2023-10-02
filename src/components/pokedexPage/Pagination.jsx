@@ -1,31 +1,28 @@
-import { useEffect, useState } from "react"
 
-const Pagination = ({setPageNumber,pageNumber,lastPokemonNumber}) => {
-    const [limit, setLimit] = useState(20)
-    /* const [pageNumber, setPageNumber] = useState(1) */
-    /* const lastPage= Math.ceil(lastPokemonNumber / limit) */
-    const [lastPage, setlastPage] = useState(Math.ceil(lastPokemonNumber / limit))
-    useEffect(()=>{
-      setlastPage(Math.ceil(+lastPokemonNumber / limit))
-    },[lastPokemonNumber])
-
+const Pagination = ({setPageNumber,pageNumber,numberLastPageFilter}) => {
+    
     const handleNextPage = (e) =>{
         e.preventDefault()
-        pageNumber < lastPage
-         ? setPageNumber(pageNumber + 1) 
-         : setPageNumber(lastPage)
+        if(pageNumber < numberLastPageFilter){
+          setPageNumber(pageNumber + 1) 
+        }else{
+          setPageNumber(numberLastPageFilter)
+        }
     }
     const handlePreviousPage = (e) =>{
         e.preventDefault()
-        pageNumber <= 1
-         ? setPageNumber(1) 
-         : setPageNumber(pageNumber - 1)
+        if(pageNumber <= 1){
+          setPageNumber(1) 
+        }else{
+          setPageNumber(pageNumber - 1)
+        }
     }
     const handleInputChange = (e) =>{
       e.preventDefault()
-      if(+e.target.value <= lastPage && +e.target.value >= 1){
+      if(+e.target.value <= numberLastPageFilter && +e.target.value >= 1){
         setPageNumber(+e.target.value)
       }
+     /*  setPageNumber(+e.target.value) */
     }
 
     
@@ -36,7 +33,7 @@ const Pagination = ({setPageNumber,pageNumber,lastPokemonNumber}) => {
             <input className="pagination__input" type="text" value={pageNumber} onChange={handleInputChange}/>
         </form>
         <span className="pagination__separation_mark">/</span>
-        <span className="pagination__numberOfPages">{lastPage ? lastPage : 1}</span>
+        <span className="pagination__numberOfPages">{numberLastPageFilter}</span>
         <button className="pagination__btn--next" onClick={handleNextPage}>Next</button>
     </div>
   )

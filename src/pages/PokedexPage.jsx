@@ -4,58 +4,52 @@ import { useEffect, useRef, useState } from "react"
 import SelectType from "../components/pokedexPage/SelectType"
 import PokeCard from "../components/pokedexPage/PokeCard"
 import Pagination from "../components/pokedexPage/Pagination"
+import getArraySplit from "../utils/getArraySplit"
 
 const PokedexPage = () => {
+
   const [inputValue, setInputValue] = useState('')
   const [typeSelected, setTypeSelected] = useState('all pokemon')
-  console.log(typeSelected)
 
-  /*  */
+
   const [limit, setLimit] = useState(20)
   const [pageNumber, setPageNumber] = useState(1)
-  const starOfSeparation = limit * (pageNumber - 1)
-  const [lastPokemonNumber, setLastPokemonNumber] = useState(1292)
-  /*  */
+  const [numberLastPageFilter, setNumberLastPageFilter] = useState(1)
+
 
   const trainer = useSelector(store => store.trainer)
 
   const inputSearch = useRef()
 
-  /* const url = 'https://pokeapi.co/api/v2/pokemon?offset=00&limit=20' */
-  const url = `https://pokeapi.co/api/v2/pokemon?offset=${starOfSeparation}&limit=${limit}`
   const AllPokemonUrl = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=1292'
-  const  [pokemons,getPokemons,getTypePokemon] = useFetch(url)
-  const  [Allpokemons,getAllPokemons] = useFetch(AllPokemonUrl)
+  const  [Allpokemons,getAllPokemons,getTypePokemon] = useFetch(AllPokemonUrl)
 
+  const pokeFiltered = Allpokemons?.results.filter(poke => poke.name.includes(inputValue))
+  const pokeFilteredSplit = getArraySplit(pokeFiltered, limit);
 
   useEffect(()=>{
-    if(inputValue !== '' && typeSelected === 'all pokemon'){
+    if(typeSelected === 'all pokemon'){
       getAllPokemons()
-      console.log("getAllPokemon")
-      /* setLastPokemonNumber(pokeSearch?.length) */
-      setLastPokemonNumber(1)
-      console.log("numero de pokemon que hay: "+ lastPokemonNumber)
-
-    }else if(typeSelected === 'all pokemon'){
-      getPokemons()
-      console.log("getPokemon")
-      setLastPokemonNumber(1292)
     }else{
       getTypePokemon(typeSelected)
-      setLastPokemonNumber(1)
+      
     }
+    
+  },[typeSelected,inputValue])
 
-  },[typeSelected,url,inputValue,lastPokemonNumber])
+  useEffect(()=>{
+    if(pokeFilteredSplit){
+      setNumberLastPageFilter(pokeFilteredSplit?.length)
+    }
+  },[pokeFilteredSplit])
 
-
+  console.log(numberLastPageFilter)
 
   const handleSearch = (e)=>{
     e.preventDefault()
     setInputValue(inputSearch.current.value.trim().toLowerCase())
     setPageNumber(1)
   }
-  const pokeFiltered = pokemons?.results.filter(poke => poke.name.includes(inputValue))
-  const pokeSearch = Allpokemons?.results.filter(poke => poke.name.includes(inputValue))
 
   return (
     <section className="pokedex">
@@ -66,32 +60,25 @@ const PokedexPage = () => {
               <input className="pokedex__input_pokemon" placeholder="Search pokemon" type="text" ref={inputSearch}/>
               <button className="pokedex__btn">Search</button>
             </form>
-            <SelectType setTypeSelected={setTypeSelected}/> 
+            <SelectType 
+            setTypeSelected={setTypeSelected}
+            setPageNumber={setPageNumber}/> 
           </div>
           <div className="pokeCards__container">
             {
-              inputValue !== '' && typeSelected === 'all pokemon'
-                ?(
-                  pokeSearch?.map(poke => (
+                  pokeFilteredSplit[pageNumber - 1]?.map(poke => (
                     <PokeCard
                       key={poke.url}
-                      url={poke.url}
+                      url={poke.url}  
                     />
                   ))
-                )
-                :(
-                  pokeFiltered?.map(poke => (
-                    <PokeCard
-                      key={poke.url}
-                      url={poke.url}
-                    />
-                  ))
-                )
             }
-            {console.log("pokeSearch tiene: " + pokeSearch?.length)}
           </div>
        </div>
-       <Pagination setPageNumber={setPageNumber} pageNumber={pageNumber} lastPokemonNumber={lastPokemonNumber}/>
+       <Pagination 
+       setPageNumber={setPageNumber} 
+       pageNumber={pageNumber}
+       numberLastPageFilter={numberLastPageFilter}/>
     </section>
   )
 }
