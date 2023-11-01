@@ -3,11 +3,18 @@ import { useState } from "react"
 
 const useFetch = (url) => {
   const [infoApi, setInfoApi] = useState()
-  
+  const [hasError, setHasError] = useState(false)
+
   const getApi = () =>{
     axios.get(url)
-    .then(res=> setInfoApi(res.data))
-    .catch(err => console.log(err))
+    .then(res=> {
+      setHasError(false)
+      setInfoApi(res.data)
+    })
+    .catch(err => {
+      setHasError(true)
+      console.log(err)
+    })
   }
 
   const getTypeApi = (urlType) =>{
@@ -21,7 +28,7 @@ const useFetch = (url) => {
     .catch(err => console.log(err))
   }
 
-  return [infoApi,getApi,getTypeApi]
+  return [infoApi,getApi,getTypeApi,hasError]
 
 }
 

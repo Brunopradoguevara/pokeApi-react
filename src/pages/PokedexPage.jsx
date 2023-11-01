@@ -5,6 +5,7 @@ import SelectType from "../components/pokedexPage/SelectType"
 import PokeCard from "../components/pokedexPage/PokeCard"
 import Pagination from "../components/pokedexPage/Pagination"
 import getArraySplit from "../utils/getArraySplit"
+import { useNavigate } from "react-router-dom"
 
 const PokedexPage = () => {
 
@@ -14,9 +15,9 @@ const PokedexPage = () => {
 
   const [limit, setLimit] = useState(20)
   const [pageNumber, setPageNumber] = useState(1)
-  const [numberLastPageFilter, setNumberLastPageFilter] = useState(1)
+  const [numberLastPageFilter, setNumberLastPageFilter] = useState(null)
 
-
+  const navigate = useNavigate()
   const trainer = useSelector(store => store.trainer)
 
   const inputSearch = useRef()
@@ -32,7 +33,6 @@ const PokedexPage = () => {
       getAllPokemons()
     }else{
       getTypePokemon(typeSelected)
-      
     }
     
   },[typeSelected,inputValue])
@@ -40,19 +40,24 @@ const PokedexPage = () => {
   useEffect(()=>{
     if(pokeFilteredSplit){
       setNumberLastPageFilter(pokeFilteredSplit?.length)
+      if(pokeFiltered?.length === 0){
+        navigate('/notFoundPokemon')
+      }
     }
   },[pokeFilteredSplit])
 
-  console.log(numberLastPageFilter)
+  console.log("Number last page is:" + numberLastPageFilter)
+  console.log("Number pokemon is:" + pokeFiltered?.length)
 
   const handleSearch = (e)=>{
     e.preventDefault()
     setInputValue(inputSearch.current.value.trim().toLowerCase())
     setPageNumber(1)
+    console.log(pokeFiltered)
   }
 
   return (
-    <section className="pokedex">
+      <section className="pokedex">
        <div className="pokedex__container">
         <p className="pokedex__welcome"> <span className="pokedex__greeting">Hi {trainer},</span> here you can find your favorite pokemon</p>
           <div className="pokedex__search_pokemon">

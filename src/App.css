@@ -3,7 +3,10 @@
 .home{
     width: 100vw;
     height: 100vh;
-    background-color: lightblue;
+    background-image: url('/bgImg-home.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,12 +21,13 @@
 .home__greeting{
     font-size: 2.5rem;
     width: 95%;
-    color: rgb(238, 22, 22);
+    color: rgb(255, 0, 0);
     text-align: center;
     margin: 1.5rem 0 0.5rem 0;
 }
 .home__introduction{
     font-size: 1.5rem;
+    color: white;
     width: 95%;
     text-align: center;
 }
@@ -51,15 +55,51 @@
 .home__btn_start:hover{
   background-color: rgb(238, 22, 22);
 }
+/*** HEADER ***/
+.header__red{
+  background-color: hsl(354, 89%, 48%);
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.header__pokedex_title{
+  max-width: 300px;
+  width: 90%;
+  height: 55px;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.header__pokeball{
+  height: 60px;
+  margin-top: 10px;
+  margin-right: 25px;
+}
+.header__black{
+  background-color: black;
+  width: 100%;
+  height: 40px;
+}
+.bx-left-arrow-circle{
+  margin-top: 50px;
+  margin-left: 20px;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: rgb(207, 26, 26);
+  transition: 0.3s ease-in-out;
+}
+.bx-left-arrow-circle:hover{
+  color: black;
+}
 
 /*** POKEDEX SECTION ***/
-
 .pokedex{
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #f5f5dc;
 }
 .pokedex__container{
     width: 85vw;
@@ -122,6 +162,7 @@
     border-radius: 15px;
     transition: 0.3s ease-in-out;
     cursor: pointer;
+    background-color: white;
 }   
 .pokeCard:hover{
     transform: scale(1.03);
@@ -348,6 +389,7 @@
   align-items: center;
   justify-content: center;
   gap: 5rem;
+  background-color: #f5f5dc;
 }
 .pokedexId{
   width: 50%;
@@ -515,9 +557,55 @@
   text-transform: capitalize;
 }
 
+/*** NotFoundPokemon***/
+.notFoundPokemon{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh-80px);
+  padding-top: 50px;
+}
+.notFoundPokemon__title{
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.notFoundPokemon__img_container{
+    position: relative;
+    width: 20%;
+    min-width: 150px;
+}
+.notFoundPokemon__img{
+  width: 100%;
+  position: absolute;
+  animation: moveImage 2s linear infinite;
+}
+
+@keyframes moveImage {
+  0%{
+    transform: translate(0); /* Comienza y termina en la posición inicial */
+  }
+  50% {
+    transform: translate(30px); /* Mover hacia la derecha */
+  }
+  100% {
+    transform: translate(0); /* Mover hacia la izquierda */
+  }
+}
 
 
 @media screen and (max-width:767px) {
+  .header__red{
+    justify-content: center;
+  }
+  .header__pokedex_title{
+    margin-left: 0;
+  }
+  .header__pokeball{
+    display: none;
+  }
   .pokedex__search_pokemon{
     grid-template-columns: 1fr;
     gap: 1rem;
