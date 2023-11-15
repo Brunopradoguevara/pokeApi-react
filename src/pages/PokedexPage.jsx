@@ -46,14 +46,11 @@ const PokedexPage = () => {
     }
   },[pokeFilteredSplit])
 
-  console.log("Number last page is:" + numberLastPageFilter)
-  console.log("Number pokemon is:" + pokeFiltered?.length)
 
   const handleSearch = (e)=>{
     e.preventDefault()
     setInputValue(inputSearch.current.value.trim().toLowerCase())
     setPageNumber(1)
-    console.log(pokeFiltered)
   }
 
   return (

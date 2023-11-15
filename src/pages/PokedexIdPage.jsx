@@ -12,7 +12,6 @@ const PokedexIdPage = () => {
     useEffect(()=>{
         getPokemon()  
     },[id])
-    console.log(pokemon)
     
   return (
     <section className="pokedexId__container">
