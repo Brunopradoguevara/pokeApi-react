@@ -6,7 +6,7 @@ import PokeCard from "../components/pokedexPage/PokeCard"
 import Pagination from "../components/pokedexPage/Pagination"
 import getArraySplit from "../utils/getArraySplit"
 import { useNavigate } from "react-router-dom"
-
+import './styles/PokedexPage.css'
 const PokedexPage = () => {
 
   const [inputValue, setInputValue] = useState('')
@@ -41,7 +41,7 @@ const PokedexPage = () => {
     if(pokeFilteredSplit){
       setNumberLastPageFilter(pokeFilteredSplit?.length)
       if(pokeFiltered?.length === 0){
-        navigate('/notFoundPokemon')
+        navigate('/pokemonNotFound')
       }
     }
   },[pokeFilteredSplit])

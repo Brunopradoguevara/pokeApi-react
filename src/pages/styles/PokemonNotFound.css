@@ -1,0 +1,36 @@
+.pokemonNotFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh-80px);
+    padding-top: 50px;
+  }
+  .pokemonNotFound__title{
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .pokemonNotFound__img_container{
+      position: relative;
+      width: 20%;
+      min-width: 150px;
+  }
+  .pokemonNotFound__img{
+    width: 100%;
+    position: absolute;
+    animation: moveImage 2s linear infinite;
+  }
+  
+  @keyframes moveImage {
+    0%{
+      transform: translate(0); 
+    }
+    50% {
+      transform: translate(30px); 
+    }
+    100% {
+      transform: translate(0); 
+    }
+  }

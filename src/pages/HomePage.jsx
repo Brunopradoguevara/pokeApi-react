@@ -2,6 +2,7 @@ import { useRef } from "react"
 import { setTrainerSlice } from "../store/slices/trainer.slice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import './styles/HomePage.css'
 
 const HomePage = () => {
 

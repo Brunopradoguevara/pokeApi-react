@@ -1,0 +1,77 @@
+.home{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/bgImg-home.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home__title{
+  text-align: center;
+}
+.home__title_img{
+  max-width: 670px;
+  width: 70%;
+}
+.home__greeting{
+    font-size: 2.5rem;
+    width: 95%;
+    color: rgb(255, 0, 0);
+    text-align: center;
+    margin: 1.5rem 0 0.5rem 0;
+}
+.home__introduction{
+    font-size: 1.5rem;
+    color: white;
+    width: 95%;
+    text-align: center;
+}
+.home__form{
+    width: 90%;
+    margin: 1.5rem auto;
+    display: flex;
+    justify-content: center;    
+}
+.home__input_name{
+    width: 80%;
+    max-width: 400px;
+    padding: 0.8rem;
+    border: none;
+    box-shadow: -2px 2.5px 3px gray;
+}
+.home__btn_start{
+    padding: 0.8rem 3rem;
+    border: none;
+    color: white;
+    background-color: rgb(207, 26, 26);
+    box-shadow: 2px 2.5px 3px gray;
+    transition: 0.3s ease-in-out;
+}
+.home__btn_start:hover{
+  background-color: rgb(238, 22, 22);
+}
+
+
+@media screen and (max-width:425px){
+    .home__greeting{
+      font-size: 2rem;
+    }
+    .home__introduction{
+      font-size: 1.2rem;
+    }
+}
+@media screen and (max-width:320px){
+    
+    .home__form{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .home__input_name,
+    .home__btn_start{
+      width: 100%;
+    }
+}

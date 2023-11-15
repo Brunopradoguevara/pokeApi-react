@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import useFetch from "../../hooks/useFetch"
 import { useNavigate } from "react-router-dom"
-
+import './styles/PokeCard.css'
+import '../../colorsType.css';
 const PokeCard = ({url}) => {
 
  const [pokemon,getPokemon] = useFetch(url)
@@ -17,8 +18,14 @@ const PokeCard = ({url}) => {
   const handleNavigate = () =>{
     navigate(`/pokedex/${pokemon.id}`)
   }
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
-    <article className={`pokeCard ${pokemon?.types[0].type.name}-border`} onClick={handleNavigate}>
+    <article className={`pokeCard ${pokemon?.types[0].type.name}-border`} onClick={() => {
+      handleNavigate();
+      scrollToTop();
+    }}>
       <header className={`pokeCard__header ${pokemon?.types[0].type.name}-gradient`}>
         <img className="pokeCard__img" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
       </header>

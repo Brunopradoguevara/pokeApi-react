@@ -1,4 +1,4 @@
-
+import './styles/Pagination.css'
 const Pagination = ({setPageNumber,pageNumber,numberLastPageFilter}) => {
     
     const handleNextPage = (e) =>{
@@ -22,7 +22,6 @@ const Pagination = ({setPageNumber,pageNumber,numberLastPageFilter}) => {
       if(+e.target.value <= numberLastPageFilter && +e.target.value >= 1){
         setPageNumber(+e.target.value)
       }
-     /*  setPageNumber(+e.target.value) */
     }
 
     

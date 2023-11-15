@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom"
 import useFetch from "../hooks/useFetch"
 import { useEffect } from "react"
-
+import './styles/PokedexIdPage.css'
+import '../colorsType.css';
 const PokedexIdPage = () => {
 
   const {id} = useParams()
@@ -80,10 +81,10 @@ const PokedexIdPage = () => {
                       className="pokedexId__stats">
                     <div className="pokedexId__stat_container">
                       <span className="pokedexId__stat_title">{statInfo.stat.name}</span>
-                      <span className="pokedexId__stat_value">{statInfo.base_stat}/255</span>
+                      <span className="pokedexId__stat_value">{statInfo.base_stat}/150</span>
                     </div>
                     <div className="pokedexId__bar">
-                      <div className="pokedexId__bar_value"  style={{ width: `${(statInfo.base_stat / 255) * 100}%`}}></div>
+                      <div className="pokedexId__bar_value"  style={{ width: `${(statInfo.base_stat / 150) * 100}%`}}></div>
                     </div>
                   </div>
                 ))
