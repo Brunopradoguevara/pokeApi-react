@@ -15,3 +15,15 @@ li{
 a{
   text-decoration: none;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 12px; 
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(207, 26, 26); 
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: black; 
+}
