@@ -8,7 +8,7 @@ const HomePage = () => {
 
   const inputTrainer = useRef()
   const dispatch = useDispatch()
-  const trainer = useSelector(store => store.trainer)
+  /* const trainer = useSelector(store => store.trainer) */
   const navigate = useNavigate()
   const handleSubmit = (e) =>{
     e.preventDefault()

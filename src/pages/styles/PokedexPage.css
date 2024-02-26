@@ -52,10 +52,10 @@
     box-shadow: -2px 2.5px 3px gray;
 }
 .pokeCards__container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 290px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     justify-content: center;
-    row-gap: 1.5rem;
     padding: 4rem 0;
 }
 
