@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { setTrainerSlice } from "../store/slices/trainer.slice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -8,12 +8,21 @@ const HomePage = () => {
 
   const inputTrainer = useRef()
   const dispatch = useDispatch()
-  /* const trainer = useSelector(store => store.trainer) */
   const navigate = useNavigate()
+
+  const [erroName,setErrorName] = useState(false)
+
   const handleSubmit = (e) =>{
     e.preventDefault()
-    dispatch(setTrainerSlice(inputTrainer.current.value.trim()))
-    navigate('/pokedex')
+
+    if(inputTrainer.current.value.trim() === ''){
+      setErrorName(true)
+      console.log('Sin nombre');
+    }else{
+      setErrorName(false)
+      dispatch(setTrainerSlice(inputTrainer.current.value.trim()))
+      navigate('/pokedex')
+    }
   }
   return (
     <div className="home">
@@ -22,7 +31,12 @@ const HomePage = () => {
           <h2 className="home__greeting">Hi Trainer!</h2>
           <p className="home__introduction">To start, please, enter your trainer nickname</p>
           <form className="home__form" onSubmit={handleSubmit}>
-              <input className="home__input_name" placeholder="your nickname" type="text" ref={inputTrainer} />
+              <div className="home_input_container">
+                  <input className={`home__input_name ${erroName ? "input_error" : ""}`} placeholder="your nickname" type="text" ref={inputTrainer} />
+                {erroName && (
+                  <span className="erroName_message">Nickname is required</span>
+                )}
+              </div>
               <button className="home__btn_start">Start</button>
           </form>
         </div>
