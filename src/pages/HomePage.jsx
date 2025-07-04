@@ -17,7 +17,6 @@ const HomePage = () => {
 
     if(inputTrainer.current.value.trim() === ''){
       setErrorName(true)
-      console.log('Sin nombre');
     }else{
       setErrorName(false)
       dispatch(setTrainerSlice(inputTrainer.current.value.trim()))
