@@ -3,20 +3,29 @@
     display: flex;
     margin-bottom: 3rem;
     justify-content: center;
+    gap: 1rem;
   }
+.pagination__btn_page_number{
+    background-color: rgb(207, 26, 26);
+    color: white;
+    border: 1px solid rgb(207, 26, 26);
+}
+.pagination__btn_page_number,
 .pagination__btn--Previous,
 .pagination__btn--next{
     background-color: rgb(207, 26, 26);
     color: white;
     border: none;
-    margin-right: 1rem;
-    width: 100px;
+    border-radius: 6px;
+    width: 70px;
     padding: 0.5rem;
     transition: 0.3s ease-in-out;
  }
+.pagination__btn_page_number,
 .pagination__btn--Previous:hover,
 .pagination__btn--next:hover{
     background-color: rgb(238, 22, 22);
+    cursor: pointer;
  }
 .pagination__form{
     width: 50px;
@@ -38,4 +47,15 @@
     margin: auto 1rem auto 0;
     font-size: 2rem;
     font-weight: 700;
+ }
+
+ @media screen and (max-width:767px){
+    .pagination{
+        gap: 6px;
+    }
+    .pagination__btn_page_number,
+    .pagination__btn--Previous,
+    .pagination__btn--next{
+        width: 40px;
+    }
  }

@@ -1,39 +1,57 @@
+import { useState } from 'react'
 import './styles/Pagination.css'
 const Pagination = ({setPageNumber,pageNumber,numberLastPageFilter}) => {
-    
-    const handleNextPage = (e) =>{
-        e.preventDefault()
-        if(pageNumber < numberLastPageFilter){
-          setPageNumber(pageNumber + 1) 
-        }else{
-          setPageNumber(numberLastPageFilter)
+
+    const pageBlockSize = 5
+    const currentBlock = Math.floor((pageNumber - 1) / pageBlockSize);
+    const startPage = currentBlock * pageBlockSize + 1;
+    const endPage = Math.min(startPage + pageBlockSize - 1, numberLastPageFilter);
+
+     const handlePageClick = (page) => {
+        setPageNumber(page);
+      }
+      
+
+    const handleNextBlock = (e) =>{
+        const nextStartPage = startPage + pageBlockSize;
+        if (nextStartPage <= numberLastPageFilter) {
+          setPageNumber(nextStartPage);
         }
     }
-    const handlePreviousPage = (e) =>{
-        e.preventDefault()
-        if(pageNumber <= 1){
-          setPageNumber(1) 
-        }else{
-          setPageNumber(pageNumber - 1)
-        }
-    }
-    const handleInputChange = (e) =>{
-      e.preventDefault()
-      if(+e.target.value <= numberLastPageFilter && +e.target.value >= 1){
-        setPageNumber(+e.target.value)
+    const handlePrevBlock = (e) =>{
+      const prevStartPage = startPage - pageBlockSize;
+      if (prevStartPage >= 1) {
+        setPageNumber(prevStartPage)
       }
     }
 
     
   return (
     <div className="pagination">
-        <button className="pagination__btn--Previous" onClick={handlePreviousPage}>Previous</button>
-        <form className="pagination__form">
-            <input className="pagination__input" type="text" value={pageNumber} onChange={handleInputChange}/>
-        </form>
-        <span className="pagination__separation_mark">/</span>
-        <span className="pagination__numberOfPages">{numberLastPageFilter}</span>
-        <button className="pagination__btn--next" onClick={handleNextPage}>Next</button>
+      {startPage > 1 && (
+        <button className="pagination__btn--Previous" onClick={handlePrevBlock}>
+          &laquo;
+        </button>
+      )}
+
+      {[...Array(endPage - startPage + 1)].map((_, i) => {
+        const page = startPage + i;
+        return (
+          <button
+            key={page}
+            className={`pagination__btn_page_number ${page === pageNumber ? 'active' : ''}`}
+            onClick={() => handlePageClick(page)}
+          >
+            {page}
+          </button>
+        );
+      })}
+
+      {endPage < numberLastPageFilter && (
+        <button className="pagination__btn--next" onClick={handleNextBlock}>
+          &raquo;
+        </button>
+      )}
     </div>
   )
 }
