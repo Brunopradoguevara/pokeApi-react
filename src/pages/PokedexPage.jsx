@@ -46,6 +46,9 @@ const PokedexPage = () => {
     }
   },[pokeFilteredSplit])
 
+  const handleInputChange = (e) => {
+    e.target.value = e.target.value.replace(/[^a-zA-Z]/g, '');
+  };
 
   const handleSearch = (e)=>{
     e.preventDefault()
@@ -59,7 +62,7 @@ const PokedexPage = () => {
         <p className="pokedex__welcome"> <span className="pokedex__greeting">Hi {trainer},</span> here you can find your favorite pokemon</p>
           <div className="pokedex__search_pokemon">
             <form className="pokedex__form" onSubmit={handleSearch}>
-              <input className="pokedex__input_pokemon" placeholder="Search pokemon" type="text" ref={inputSearch}/>
+              <input className="pokedex__input_pokemon" placeholder="Search pokemon" type="text" pattern="[A-Za-z]+" ref={inputSearch} onChange={handleInputChange}/>
               <button className="pokedex__btn">Search</button>
             </form>
             <SelectType 

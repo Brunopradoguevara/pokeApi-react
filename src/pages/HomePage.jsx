@@ -17,7 +17,6 @@ const HomePage = () => {
 
     if(inputTrainer.current.value.trim() === ''){
       setErrorName(true)
-      console.log('Sin nombre');
     }else{
       setErrorName(false)
       dispatch(setTrainerSlice(inputTrainer.current.value.trim()))
@@ -32,7 +31,7 @@ const HomePage = () => {
           <p className="home__introduction">To start, please, enter your trainer nickname</p>
           <form className="home__form" onSubmit={handleSubmit}>
               <div className="home_input_container">
-                  <input className={`home__input_name ${erroName ? "input_error" : ""}`} placeholder="your nickname" type="text" ref={inputTrainer} />
+                  <input className={`home__input_name ${erroName ? "input_error" : ""}`} placeholder="your nickname" type="text" maxLength={18} ref={inputTrainer} />
                 {erroName && (
                   <span className="erroName_message">Nickname is required</span>
                 )}
